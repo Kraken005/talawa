@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -9,7 +12,7 @@ import 'package:talawa/view_model/after_auth_view_models/profile_view_models/edi
 import '../../../helpers/test_helpers.dart';
 
 class MockCallbackFunction extends Mock {
-  call();
+  void call();
 }
 
 void main() {

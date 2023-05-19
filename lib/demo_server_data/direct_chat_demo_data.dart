@@ -1,5 +1,6 @@
-///This file contains demo data. It contains a list of type Map<String, Object>
-/// and sample data of chats.
+/// This file contains demo data.
+///
+/// It contains a list of type Map<String, Object> and sample data of chats.
 const directChatDemoData = [
   {
     "sender": {

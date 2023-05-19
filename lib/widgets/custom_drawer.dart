@@ -10,13 +10,16 @@ import 'package:talawa/widgets/custom_alert_dialog.dart';
 import 'package:talawa/widgets/custom_avatar.dart';
 import 'package:talawa/widgets/from_palisadoes.dart';
 
-/// Creates a custom drawer for switching organizations,
+/// Creates a custom drawer for switching organizations.
+///
 /// joining new organizations, or leaving an organization.
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
     Key? key,
     required this.homeModel,
   }) : super(key: key);
+
+  /// home model.
   final MainScreenViewModel homeModel;
 
   @override
@@ -134,9 +137,13 @@ class CustomDrawer extends StatelessWidget {
                     ),
                     SizedBox(
                       key: const Key("Sized Box Drawer"),
-                      height: SizeConfig.screenHeight! * 0.05,
+                      height: SizeConfig.screenHeight! * 0.03,
                     ),
-                    const FromPalisadoes(key: Key("From Palisadoes"))
+                    const FromPalisadoes(key: Key("From Palisadoes")),
+                    SizedBox(
+                      key: const Key("Sized BottomBox Drawer"),
+                      height: SizeConfig.screenHeight! * 0.03,
+                    )
                   ],
                 ),
               ],
@@ -147,8 +154,15 @@ class CustomDrawer extends StatelessWidget {
     );
   }
 
-  /// Button to exit the organization
-  exitButton() {
+  /// Button to exit the organization.
+  ///
+  /// **params**:
+  ///   None
+  ///
+  /// **returns**:
+  ///   None
+
+  void exitButton() {
     return navigationService.pushDialog(
       CustomAlertDialog(
         key: const Key("Exit?"),

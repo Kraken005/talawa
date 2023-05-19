@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -138,7 +141,7 @@ class JoinOrganisationAfterAuth extends StatelessWidget {
   }
 
   /// scanQR returns a widget that is use in joining the organization via the QR code.
-  scanQR(BuildContext context, SelectOrganizationViewModel model) {
+  void scanQR(BuildContext context, SelectOrganizationViewModel model) {
     showModalBottomSheet(
       context: context,
       barrierColor: Colors.transparent,

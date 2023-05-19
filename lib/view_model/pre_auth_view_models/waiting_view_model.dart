@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:talawa/constants/routing_constants.dart';
@@ -17,7 +20,7 @@ class WaitingViewModel extends BaseModel {
   late User currentUser;
 
   // initialiser
-  initialise(BuildContext context) {
+  void initialise(BuildContext context) {
     currentUser = userConfig.currentUser;
     pendingRequestOrg = currentUser.membershipRequests!;
     // greetings
@@ -39,7 +42,7 @@ class WaitingViewModel extends BaseModel {
   }
 
   /// This function ends the session for the user or logout the user from the application.
-  logout() {
+  void logout() {
     final user = Hive.box<User>('currentUser');
     final url = Hive.box('url');
     user.clear();
@@ -51,7 +54,7 @@ class WaitingViewModel extends BaseModel {
     );
   }
 
-  joinOrg() {
+  void joinOrg() {
     navigationService.pushScreen(Routes.joinOrg, arguments: '-1');
   }
 }

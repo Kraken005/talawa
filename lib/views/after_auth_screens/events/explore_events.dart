@@ -10,12 +10,14 @@ import 'package:talawa/views/base_view.dart';
 import 'package:talawa/widgets/event_card.dart';
 import 'package:talawa/widgets/event_search_delegate.dart';
 
-/// ExploreEvents returns a widget that renders the list for events that are visible to be explored.
+/// Shows the list of events with options to categorize them.
 class ExploreEvents extends StatelessWidget {
   const ExploreEvents({
     required Key key,
     this.homeModel,
   }) : super(key: key);
+
+  /// [homeModal] is a type of [MainScreenViewModel] which provides methods to handle the data for this component.
   final MainScreenViewModel? homeModel;
 
   @override
@@ -80,7 +82,7 @@ class ExploreEvents extends StatelessWidget {
                         physics: const AlwaysScrollableScrollPhysics(),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
-                            horizontal: SizeConfig.screenWidth! * 0.027,
+                            horizontal: SizeConfig.screenWidth! * 0.010,
                           ),
                           child: Column(
                             children: [
@@ -88,77 +90,87 @@ class ExploreEvents extends StatelessWidget {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Card(
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
-                                    elevation: 2,
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 20,
-                                      ),
-                                      width: SizeConfig.screenWidth! * 0.45,
-                                      child: DropdownButtonHideUnderline(
-                                        child: dropDownList(model, context),
-                                      ),
-                                    ),
-                                  ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                        // on tap open the Explore Event Dialog.
-                                        context: context,
-                                        builder: (_) {
-                                          return const ExploreEventDialog(
-                                            key: Key('ExploreEvents'),
-                                          );
-                                        },
-                                      );
-                                    },
+                                  Expanded(
+                                    flex: 3,
                                     child: Card(
-                                      key: homeModel?.keySEDateFilter,
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onPrimary,
+                                      elevation: 2,
                                       child: Container(
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 20,
-                                          vertical: 12,
                                         ),
-                                        // width: SizeConfig.screenWidth! * 0.30,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            const Icon(
-                                              Icons.calendar_today,
-                                              color: Color(0xff524F4F),
-                                            ),
-                                            const SizedBox(
-                                              width: 8,
-                                            ),
-                                            Text(
-                                              AppLocalizations.of(context)!
-                                                  .strictTranslate(
-                                                "Add Date",
-                                              ),
-                                            ),
-                                          ],
+                                        //width: SizeConfig.screenWidth! * 0.45,
+                                        child: DropdownButtonHideUnderline(
+                                          child: dropDownList(model, context),
                                         ),
                                       ),
                                     ),
                                   ),
-                                  Card(
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
-                                    child: IconButton(
-                                      onPressed: () {
-                                        navigationService.pushScreen(
-                                          Routes.calendar,
-                                          arguments: model.events,
+                                  Expanded(
+                                    flex: 2,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                          // on tap open the Explore Event Dialog.
+                                          context: context,
+                                          builder: (_) {
+                                            return const ExploreEventDialog(
+                                              key: Key('ExploreEvents'),
+                                            );
+                                          },
                                         );
                                       },
-                                      icon: const Icon(
-                                        Icons.calendar_month,
+                                      child: Card(
+                                        key: homeModel?.keySEDateFilter,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary,
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            vertical: 12,
+                                          ),
+                                          // width: SizeConfig.screenWidth! * 0.30,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              const Icon(
+                                                Icons.calendar_today,
+                                                color: Color(0xff524F4F),
+                                              ),
+                                              const SizedBox(
+                                                width: 8,
+                                              ),
+                                              Text(
+                                                AppLocalizations.of(context)!
+                                                    .strictTranslate(
+                                                  "Add Date",
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Card(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .onPrimary,
+                                      child: IconButton(
+                                        onPressed: () {
+                                          navigationService.pushScreen(
+                                            Routes.calendar,
+                                            arguments: model.events,
+                                          );
+                                        },
+                                        icon: const Icon(
+                                          Icons.calendar_month,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -209,7 +221,8 @@ class ExploreEvents extends StatelessWidget {
                 ),
           floatingActionButton: FloatingActionButton.extended(
             key: homeModel?.keySEAdd,
-            backgroundColor: Theme.of(context).primaryColor,
+            heroTag: "AddEventFab",
+            backgroundColor: Theme.of(context).colorScheme.background,
             onPressed: () {
               navigationService.pushScreen(
                 "/createEventPage",
@@ -232,7 +245,14 @@ class ExploreEvents extends StatelessWidget {
     );
   }
 
-  // dropDownList returns a widget of a drop down list of events type.
+  /// Shows a list of dropdown taken from  `model` and `context`.
+  ///
+  /// **params**:
+  /// * `model`: contains the events data
+  /// * `context`: the overall context of UI
+  ///
+  /// **returns**:
+  /// * `Widget`: the dropdown
   Widget dropDownList(ExploreEventsViewModel model, BuildContext context) {
     return DropdownButton<String>(
       key: homeModel?.keySECategoryMenu,

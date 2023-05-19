@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:talawa/enums/enums.dart';
@@ -22,7 +25,7 @@ class EventInfoViewModel extends BaseModel {
   late List<User> registrants;
 
   /// initialise with the event data fetched from the model.
-  initialize({required Map<String, dynamic> args}) async {
+  Future<void> initialize({required Map<String, dynamic> args}) async {
     event = args["event"] as Event;
     exploreEventsInstance =
         args["exploreEventViewModel"] as ExploreEventsViewModel;
@@ -44,7 +47,7 @@ class EventInfoViewModel extends BaseModel {
   }
 
   /// This function helps the user to register for an event.
-  registerForEvent() async {
+  Future<void> registerForEvent() async {
     // if event registration is open and user not already registered for the event.
     if (event.isRegisterable == true && event.isRegistered == false) {
       navigationService.pushDialog(

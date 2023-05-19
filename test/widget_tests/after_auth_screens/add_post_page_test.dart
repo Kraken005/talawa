@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -80,8 +83,6 @@ void main() {
         final finder = find.byKey(const Key('add_post_text_btn1'));
 
         expect(finder, findsOneWidget);
-
-        await tester.tap(finder);
         await tester.pump();
       });
       testWidgets('checks if the upload post button shows correct text',

@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 // import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -245,7 +248,7 @@ Future<void> main() async {
       //inputting an existing url text in the field
       await tester.enterText(
         urlInputFieldWidget,
-        'https://talawa-graphql-api.herokuapp.com/graphql',
+        'https://<org_url_here>/graphql',
       );
       //submitting the field with a existing url
       await tester.tap(findVerifyButton);
@@ -317,7 +320,7 @@ Future<void> main() async {
 
       await tester.enterText(
         find.byKey(const Key('UrlInputField')),
-        'https://talawa-graphql-api.herokuapp.com/graphql',
+        'https://<org_url_here>/graphql',
       );
       await tester.tap(find.byKey(const Key('LoginButton')));
       await tester.pumpAndSettle();
@@ -578,7 +581,7 @@ Future<void> main() async {
       //inputting an existing url text in the field
       await tester.enterText(
         urlInputFieldWidget,
-        'https://talawa-graphql-api.herokuapp.com/graphql',
+        'https://<org_url_here>/graphql',
       );
       //submitting the field with a existing url
       await tester.tap(findVerifyButton);

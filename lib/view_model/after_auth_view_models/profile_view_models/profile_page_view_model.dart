@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc, avoid_dynamic_calls
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:currency_picker/currency_picker.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +49,7 @@ class ProfilePageViewModel extends BaseModel {
   final List<String> denomination = ['1', '5', '10'];
 
   // initializer
-  initialize() {
+  void initialize() {
     setState(ViewState.busy);
     currentOrg = _userConfig.currentOrg;
     currentUser = _userConfig.currentUser;
@@ -84,9 +87,14 @@ class ProfilePageViewModel extends BaseModel {
                 url.clear();
                 androidFirebaseOptionsBox.clear();
                 iosFirebaseOptionsBox.clear();
-                Firebase.app()
-                    .delete(); // Deleting app will stop all Firebase plugins
+                try {
+                  Firebase.app()
+                      .delete(); // Deleting app will stop all Firebase plugins
+                } catch (e) {
+                  debugPrint("ERROR: Unable to delete firebase app $e");
+                }
                 organisation.clear();
+                navigationService.pop();
                 navigationService.removeAllAndPush(
                   '/selectLang',
                   '/',
@@ -103,7 +111,7 @@ class ProfilePageViewModel extends BaseModel {
   }
 
   /// This method changes the currency of the user for donation purpose.
-  changeCurrency(BuildContext context, Function setter) {
+  void changeCurrency(BuildContext context, Function setter) {
     showCurrencyPicker(
       context: context,
       currencyFilter: supportedCurrencies,
@@ -118,7 +126,7 @@ class ProfilePageViewModel extends BaseModel {
 
   /// This function generates the organization invitation link in a Dialog Box.
   /// Dialog box contains the QR-code of organization invite link and social media sharing options.
-  invite(BuildContext context) {
+  void invite(BuildContext context) {
     _appLanguageService.initialize();
     // organization url
     final String url =
@@ -273,7 +281,7 @@ class ProfilePageViewModel extends BaseModel {
   }
 
   // Listener on `donationField` widget focus.
-  attachListener(Function setter) {
+  void attachListener(Function setter) {
     donationField.addListener(() {
       if (donationField.hasFocus) {
         setter(() {
@@ -292,18 +300,18 @@ class ProfilePageViewModel extends BaseModel {
   }
 
   // pop the route from `navigationService`.
-  popBottomSheet() {
+  void popBottomSheet() {
     _navigationService.pop();
   }
 
   // to update the bottom sheet height.
-  updateSheetHeight() {
+  void updateSheetHeight() {
     bottomSheetHeight = SizeConfig.screenHeight! * 0.65;
     notifyListeners();
   }
 
   // show message on Snack Bar.
-  showSnackBar(String message) {
+  void showSnackBar(String message) {
     _navigationService.showTalawaErrorDialog(message, MessageType.error);
   }
 }

@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -64,7 +67,7 @@ class _MockUserConfig extends Mock implements UserConfig {
   Future updateUserJoinedOrg(List<OrgInfo> orgDetails) async => 1;
 
   @override
-  saveCurrentOrgInHive(OrgInfo saveOrgAsCurrent) => 1;
+  int saveCurrentOrgInHive(OrgInfo saveOrgAsCurrent) => 1;
 }
 
 User _user = User();
@@ -344,7 +347,7 @@ void main() {
 
       selectOrganizationViewModel.selectedOrganization = org;
 
-      await selectOrganizationViewModel.onTapContinue();
+      selectOrganizationViewModel.onTapContinue();
 
       verify(
         navigationService.pushScreen(
@@ -367,7 +370,7 @@ void main() {
 
       selectOrganizationViewModel.selectedOrganization = OrgInfo(id: '-1');
 
-      await selectOrganizationViewModel.onTapContinue();
+      selectOrganizationViewModel.onTapContinue();
 
       verify(
         navigationService.showTalawaErrorSnackBar(

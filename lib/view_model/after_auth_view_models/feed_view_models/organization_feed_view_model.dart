@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'dart:async';
 
 import 'package:talawa/constants/routing_constants.dart';
@@ -154,7 +157,7 @@ class OrganizationFeedViewModel extends BaseModel {
   ///
   /// params:
   /// * [newPost]
-  addNewPost(Post newPost) {
+  void addNewPost(Post newPost) {
     _posts.insert(0, newPost);
     notifyListeners();
   }
@@ -163,7 +166,7 @@ class OrganizationFeedViewModel extends BaseModel {
   ///
   /// params:
   /// * [post]
-  updatedPost(Post post) {
+  void updatedPost(Post post) {
     for (int i = 0; i < _posts.length; i++) {
       if (_posts[i].sId == post.sId) {
         _posts[i] = post;

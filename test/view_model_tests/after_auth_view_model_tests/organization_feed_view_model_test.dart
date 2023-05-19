@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc, avoid_dynamic_calls
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:talawa/constants/routing_constants.dart';
@@ -14,7 +17,7 @@ import '../../helpers/test_helpers.dart';
 import '../../helpers/test_helpers.mocks.dart';
 
 class MockCallbackFunction extends Mock {
-  call();
+  void call();
 }
 
 void main() {

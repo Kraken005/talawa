@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:talawa/models/organization/org_info.dart';
 import 'package:talawa/models/post/post_model.dart';
@@ -54,7 +57,7 @@ void main() {
           'email': 'test@test.com',
         },
         '_id': '1222',
-        'createdAt': '1087344000000',
+        'createdAt': '2023-03-15T15:28:52.122Z',
         'description': 'test description',
         'imageUrl': 'https://image.com',
         'videoUrl': 'https://image.com',

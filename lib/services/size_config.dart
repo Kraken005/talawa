@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/widgets.dart';
 
 /// SizeConfig class is used to initialise the height and width of the media.
@@ -33,7 +36,7 @@ class SizeConfig {
     debugPrint("safeBlockVertical: $safeBlockVertical");
   }
 
-  test() {
+  void test() {
     _mediaQueryData =
         const MediaQueryData(size: Size(360, 684), padding: EdgeInsets.zero);
     screenWidth = _mediaQueryData.size.width;

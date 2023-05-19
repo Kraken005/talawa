@@ -1,6 +1,12 @@
 ///This class creates queries related to posts.
 class PostQueries {
-  //Returns a query to get posts by ID.
+  /// Getting Posts by Id.
+  ///
+  /// **params**:
+  /// * `orgId`: The organisation id
+  ///
+  /// **returns**:
+  /// * `String`: The query related to gettingPostsbyId
   String getPostsById(String orgId) {
     return """
       query {
@@ -34,7 +40,13 @@ class PostQueries {
 """;
   }
 
-  //Returns a query to add a like to a post.
+  /// Add Like to a post.
+  ///
+  /// **params**:
+  ///   None
+  ///
+  /// **returns**:
+  /// * `String`: The query related to addingLike
   String addLike() {
     return """
      mutation likePost(\$postID: ID!) { 
@@ -46,7 +58,13 @@ class PostQueries {
   """;
   }
 
-  //Returns a query to remove a like from a post.
+  /// Remove Like from a post.
+  ///
+  /// **params**:
+  ///   None
+  ///
+  /// **returns**:
+  /// * `String`: The query related to removingLike
   String removeLike() {
     return """
      mutation unlikePost(\$postID: ID!) { 
@@ -59,5 +77,36 @@ class PostQueries {
       }
     }
   """;
+  }
+
+  /// Upload a post to database.
+  ///
+  /// **params**:
+  ///   None
+  ///
+  /// **returns**:
+  /// * `String`: The query related to uploadingPost.
+  String uploadPost() {
+    return '''
+    mutation CreatePost(
+    \$text: String!
+    \$title: String!
+    \$imageUrl: URL
+    \$videoUrl: URL
+    \$organizationId: ID!
+  ) {
+    createPost(
+      data: {
+        text: \$text
+        title: \$title
+        imageUrl: \$imageUrl
+        videoUrl: \$videoUrl
+        organizationId: \$organizationId
+      }
+    ) {
+      _id
+    }
+  }
+    ''';
   }
 }

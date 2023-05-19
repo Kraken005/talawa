@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:talawa/locator.dart';
@@ -103,7 +106,7 @@ class AppLanguage extends BaseModel {
 
   /// This function navigate user to `/appSettingsPage` route if the user is authenticated
   /// else navigate to `/setUrl` route.
-  selectLanguagePress() async {
+  Future<void> selectLanguagePress() async {
     final bool userLoggedIn = await userConfig.userLoggedIn();
     if (userLoggedIn) {
       dbLanguageUpdate();

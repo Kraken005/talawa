@@ -26,18 +26,45 @@ class EventInfoBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Stack(
               children: [
-                Text(
-                  // event title
-                  event.title!,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineMedium!
-                      .copyWith(fontSize: 26),
+                Container(
+                  padding: EdgeInsets.only(
+                    right: SizeConfig.safeBlockHorizontal! * 15,
+                  ),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          // event title
+                          event.title!,
+                          style: Theme.of(context)
+                              .textTheme
+                              .headlineMedium!
+                              .copyWith(fontSize: 26),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                const Icon(Icons.chat_bubble_outline)
+                Positioned(
+                  right: SizeConfig.screenWidth! * 0.002,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      (model.event.creator!.id == userConfig.currentUser.id)
+                          ? IconButton(
+                              onPressed: () => navigationService.pushScreen(
+                                "/editEventPage",
+                                arguments: model.event,
+                              ),
+                              icon: const Icon(Icons.edit),
+                            )
+                          : Container(),
+                      const Icon(Icons.chat_bubble_outline),
+                    ],
+                  ),
+                ),
               ],
             ),
             Text(
@@ -209,24 +236,12 @@ class EventInfoBody extends StatelessWidget {
             SizedBox(
               height: SizeConfig.screenHeight! * 0.013,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  AppLocalizations.of(context)!.strictTranslate("Attendees"),
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall!
-                      .copyWith(fontSize: 16),
-                ),
-                Text(
-                  AppLocalizations.of(context)!.strictTranslate('See all'),
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: const Color(0xff4285F4)),
-                ),
-              ],
+            Text(
+              AppLocalizations.of(context)!.strictTranslate("Attendees"),
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .copyWith(fontSize: 16),
             ),
             Divider(
               color: Theme.of(context).colorScheme.onBackground,
@@ -243,7 +258,6 @@ class EventInfoBody extends StatelessWidget {
               //then renders all the attendees in ListView.
               ListView.builder(
                 padding: EdgeInsets.zero,
-                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: model.registrants.length,
                 itemBuilder: (BuildContext context, int index) {

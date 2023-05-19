@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc, avoid_dynamic_calls
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -26,7 +29,7 @@ class LoginViewModel extends BaseModel {
   bool hidePassword = true;
 
   // initialiser
-  initialize() {
+  void initialize() {
     // greating message
     greeting = [
       {
@@ -59,7 +62,7 @@ class LoginViewModel extends BaseModel {
   }
 
   /// This function is used to sign-in the user into application.
-  login() async {
+  Future<void> login() async {
     emailFocus.unfocus();
     passwordFocus.unfocus();
     validate = AutovalidateMode.always;

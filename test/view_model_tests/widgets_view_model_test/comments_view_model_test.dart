@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -12,7 +15,7 @@ import '../../helpers/test_locator.dart';
 class MockBuildContext extends Mock implements BuildContext {}
 
 class MockCallbackFunction extends Mock {
-  call();
+  void call();
 }
 
 void main() {

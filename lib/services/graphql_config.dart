@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
@@ -29,7 +32,7 @@ class GraphqlConfig {
   }
 
   /// This function is used to get the organization URL.
-  getOrgUrl() {
+  void getOrgUrl() {
     final box = Hive.box('url');
     final String? url = box.get(urlKey) as String?;
     final String? imgUrl = box.get(imageUrlKey) as String?;
@@ -59,7 +62,7 @@ class GraphqlConfig {
     );
   }
 
-  test() {
+  void test() {
     httpLink = HttpLink(
       'https://talawa-graphql-api.herokuapp.com/graphql',
       httpClient: MockHttpClient(),

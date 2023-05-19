@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc, avoid_dynamic_calls
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -30,7 +33,7 @@ class SelectOrganizationViewModel extends BaseModel {
   late String orgId;
 
   // if the search box is on tap
-  searchActive() {
+  void searchActive() {
     if (searchFocus.hasFocus) {
       organizations = [];
       searching = true;
@@ -39,7 +42,7 @@ class SelectOrganizationViewModel extends BaseModel {
   }
 
   // initialiser
-  initialise(String initialData) async {
+  Future<void> initialise(String initialData) async {
     searchFocus.addListener(searchActive);
     if (!initialData.contains('-1')) {
       databaseFunctions.init();
@@ -63,7 +66,7 @@ class SelectOrganizationViewModel extends BaseModel {
   ///
   /// params:
   /// * [item] : Selected organization data.
-  selectOrg(OrgInfo item) async {
+  Future<void> selectOrg(OrgInfo item) async {
     print(item.id);
     bool orgAlreadyJoined = false;
     bool orgRequestAlreadyPresent = false;
@@ -105,7 +108,7 @@ class SelectOrganizationViewModel extends BaseModel {
   }
 
   // Helper for listener to check if user can tap on continue option or not.
-  onTapContinue() {
+  void onTapContinue() {
     // if user selected any organization.
     if (selectedOrganization.id != '-1') {
       navigationService.pushScreen(
@@ -123,7 +126,7 @@ class SelectOrganizationViewModel extends BaseModel {
 
   /// This function make user to join the selected organization.
   /// The function uses `joinOrgById` graph QL query.
-  onTapJoin() async {
+  Future<void> onTapJoin() async {
     // if `selectedOrganization` is public.
     if (selectedOrganization.isPublic == true) {
       try {

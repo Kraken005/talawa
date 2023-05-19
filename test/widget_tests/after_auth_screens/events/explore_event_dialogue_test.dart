@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -40,7 +43,7 @@ Widget createExploreEventDialog() {
   );
 }
 
-main() {
+void main() {
   DateTime startDate = DateTime.now().toLocal();
   // DateTime _endDate = DateTime.now().add(const Duration(days: 1)).toLocal();
   setUp(() {

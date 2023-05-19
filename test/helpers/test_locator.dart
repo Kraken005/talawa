@@ -1,4 +1,9 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'package:get_it/get_it.dart';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:talawa/main.dart';
 import 'package:talawa/services/comment_service.dart';
 import 'package:talawa/services/database_mutation_functions.dart';
@@ -21,6 +26,7 @@ import 'package:talawa/view_model/after_auth_view_models/event_view_models/explo
 import 'package:talawa/view_model/after_auth_view_models/feed_view_models/organization_feed_view_model.dart';
 import 'package:talawa/view_model/after_auth_view_models/profile_view_models/edit_profile_view_model.dart';
 import 'package:talawa/view_model/after_auth_view_models/profile_view_models/profile_page_view_model.dart';
+import 'package:talawa/view_model/after_auth_view_models/task_view_models/create_task_view_model.dart';
 import 'package:talawa/view_model/after_auth_view_models/task_view_models/explore_tasks_view_model.dart';
 import 'package:talawa/view_model/lang_view_model.dart';
 import 'package:talawa/view_model/main_screen_view_model.dart';
@@ -49,6 +55,8 @@ final eventService = locator<EventService>();
 final commentsService = locator<CommentService>();
 final postService = locator<PostService>();
 final mainScreenViewModel = locator<MainScreenViewModel>();
+final imageCropper = locator<ImageCropper>();
+final imagePicker = locator<ImagePicker>();
 
 void testSetupLocator() {
   //services
@@ -66,6 +74,8 @@ void testSetupLocator() {
   locator.registerLazySingleton(() => EventService());
   locator.registerLazySingleton(() => CommentService());
   locator.registerLazySingleton(() => MultiMediaPickerService());
+  locator.registerLazySingleton(() => ImageCropper());
+  locator.registerLazySingleton(() => ImagePicker());
   locator.registerSingleton(() => OrganizationService());
 
   //graphql
@@ -92,6 +102,7 @@ void testSetupLocator() {
   locator.registerFactory(() => ProfilePageViewModel());
   locator.registerFactory(() => EditProfilePageViewModel());
   locator.registerFactory(() => CreateEventViewModel());
+  locator.registerFactory(() => CreateTaskViewModel());
   locator.registerFactory(() => EditEventViewModel());
   locator.registerFactory(() => AddPostViewModel());
   locator.registerFactory(() => EventInfoViewModel());

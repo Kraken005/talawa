@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -20,7 +23,7 @@ class EditProfilePageViewModel extends BaseModel {
   final databaseService = databaseFunctions;
 
   // initialiser
-  initialize() {
+  void initialize() {
     imageFile = null;
     _multiMediaPickerService = locator<MultiMediaPickerService>();
   }

@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc, avoid_dynamic_calls
+// ignore_for_file: talawa_good_doc_comments
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -21,7 +24,7 @@ class DataBaseMutationFunctions {
   late GraphQLClient clientAuth;
   late Queries _query;
 
-  init() {
+  void init() {
     clientNonAuth = graphqlConfig.clientToQuery();
     clientAuth = graphqlConfig.authClient();
     _query = Queries();

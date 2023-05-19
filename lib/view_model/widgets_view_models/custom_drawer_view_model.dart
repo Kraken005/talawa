@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:talawa/enums/enums.dart';
@@ -32,7 +35,7 @@ class CustomDrawerViewModel extends BaseModel {
       _switchAbleOrg = switchableOrg;
 
   // initializer
-  initialize(MainScreenViewModel homeModel, BuildContext context) {
+  void initialize(MainScreenViewModel homeModel, BuildContext context) {
     _currentOrganizationStreamSubscription =
         userConfig.currentOrgInfoStream.listen(
       (updatedOrganization) {
@@ -46,7 +49,7 @@ class CustomDrawerViewModel extends BaseModel {
 
   /// This function switch the current organization to another organization,
   /// if the organization(want switch to) is present.
-  switchOrg(OrgInfo switchToOrg) {
+  void switchOrg(OrgInfo switchToOrg) {
     // if `selectedOrg` is equal to `switchOrg` and `switchToOrg` present or not.
     if (selectedOrg == switchToOrg && isPresentinSwitchableOrg(switchToOrg)) {
       // _navigationService.pop();
@@ -90,7 +93,7 @@ class CustomDrawerViewModel extends BaseModel {
   ///
   /// params:
   /// * [updatedOrganization] : `OrgInfo` type, new organization.
-  setSelectedOrganizationName(OrgInfo updatedOrganization) {
+  void setSelectedOrganizationName(OrgInfo updatedOrganization) {
     // if current and updated organization are not same.
     if (_selectedOrg != updatedOrganization) {
       _selectedOrg = updatedOrganization;

@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -26,7 +29,7 @@ import '../../../helpers/test_locator.dart';
 class MockBuildContext extends Mock implements BuildContext {}
 
 class MockCallbackFunction extends Mock {
-  call();
+  void call();
 }
 
 Widget createChangePassScreenLight({ThemeMode themeMode = ThemeMode.light}) =>

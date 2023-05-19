@@ -1,3 +1,6 @@
+// ignore_for_file: talawa_api_doc
+// ignore_for_file: talawa_good_doc_comments
+
 import 'dart:async';
 
 import 'package:talawa/locator.dart';
@@ -75,7 +78,7 @@ class LikeButtonViewModel extends BaseModel {
   ///
   /// params:
   /// `post` : `Post` type, the post that need to be updated.
-  updatePost(Post post) {
+  void updatePost(Post post) {
     if (_postID == post.sId) {
       _likedBy = post.likedBy!;
       checkAndSetTheIsLiked();
